@@ -1,0 +1,67 @@
+<div class="card">
+
+    <div class="table-header">
+
+        <h2>Employees</h2>
+
+        <button pButton label="Add Employee"></button>
+
+    </div>
+
+    <p-table [value]="employees" [tableStyle]="{'min-width':'60rem'}">
+
+        <ng-template pTemplate="header">
+
+            <tr>
+                <th>Photo</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Position</th>
+                <th>Salary</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+
+        </ng-template>
+
+        <ng-template pTemplate="body" let-employee>
+
+            <tr>
+
+                <td>
+                    <img [src]="employee.image" width="40" height="40" style="border-radius:50%">
+                </td>
+
+                <td>{{employee.name}}</td>
+                <td>{{employee.department}}</td>
+                <td>{{employee.position}}</td>
+                <td>{{employee.salary}}</td>
+
+                <td>
+                    <span class="status active">
+                        {{employee.status}}
+                    </span>
+                </td>
+
+                <td>
+
+                    <button
+                        pButton
+                        icon="pi pi-eye"
+                        severity="info"
+                        routerLink="/profile">
+                    </button>
+
+                    <button pButton icon="pi pi-pencil" severity="warn"></button>
+
+                    <button pButton icon="pi pi-trash" severity="danger"></button>
+
+                </td>
+
+            </tr>
+
+        </ng-template>
+
+    </p-table>
+
+</div>

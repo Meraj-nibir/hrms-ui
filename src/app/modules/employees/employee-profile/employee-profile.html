@@ -1,0 +1,122 @@
+<div class="grid">
+
+    <!-- Profile Card -->
+    <div class="col-12 md:col-4">
+
+        <div class="card profile-card">
+
+            <img src="https://i.pravatar.cc/150?img=12">
+
+            <h2>John Doe</h2>
+
+            <p>Frontend Developer</p>
+
+            <div class="profile-info">
+
+                <p><strong>Email:</strong> john@example.com</p>
+                <p><strong>Phone:</strong> +880123456789</p>
+                <p><strong>Department:</strong> IT</p>
+                <p><strong>Status:</strong> Active</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Details -->
+    <div class="col-12 md:col-8">
+
+        <!-- Salary History -->
+        <div class="card mb-4">
+
+            <h3>Salary History</h3>
+
+            <p-table [value]="salaryHistory">
+
+                <ng-template pTemplate="header">
+
+                    <tr>
+                        <th>Date</th>
+                        <th>Previous Salary</th>
+                        <th>New Salary</th>
+                        <th>Increment</th>
+                    </tr>
+
+                </ng-template>
+
+                <ng-template pTemplate="body" let-item>
+
+                    <tr>
+                        <td>{{item.date}}</td>
+                        <td>{{item.oldSalary}}</td>
+                        <td>{{item.newSalary}}</td>
+                        <td>{{item.increment}}</td>
+                    </tr>
+
+                </ng-template>
+
+            </p-table>
+
+        </div>
+
+        <!-- Promotion History -->
+        <div class="card mb-4">
+
+            <h3>Promotion History</h3>
+
+            <p-table [value]="promotions">
+
+                <ng-template pTemplate="header">
+
+                    <tr>
+                        <th>Old Position</th>
+                        <th>New Position</th>
+                        <th>Date</th>
+                    </tr>
+
+                </ng-template>
+
+                <ng-template pTemplate="body" let-item>
+
+                    <tr>
+                        <td>{{item.oldPosition}}</td>
+                        <td>{{item.newPosition}}</td>
+                        <td>{{item.date}}</td>
+                    </tr>
+
+                </ng-template>
+
+            </p-table>
+
+        </div>
+
+        <!-- Attendance -->
+        <div class="card">
+
+            <h3>Attendance Summary</h3>
+
+            <div class="attendance-grid">
+
+                <div class="attendance-box">
+                    <h2>22</h2>
+                    <p>Present</p>
+                </div>
+
+                <div class="attendance-box">
+                    <h2>2</h2>
+                    <p>Absent</p>
+                </div>
+
+                <div class="attendance-box">
+                    <h2>1</h2>
+                    <p>Late</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
