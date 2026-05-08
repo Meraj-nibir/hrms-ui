@@ -29,11 +29,26 @@
     </div>
 
 </div>
-
-<div class="card mt-4">
-
-    <h3>Employee Overview</h3>
-
-    <p-chart type="bar" [data]="chartData"></p-chart>
-
+<div class="grid">
+  <div class="col-12 md:col-6">
+    <div class="card mt-4" style="height: 400px;">
+      <h2>Employee Overview</h2>
+      <p-chart type="bar" [data]="chartData"></p-chart>
+    </div>
+  </div>
+  <div class="col-12 md:col-6">
+    <div class="card mt-4" style="height: 400px">
+      <div style="position: sticky; top: 0; z-index: 1; border-bottom: 1px solid #ccc; padding: 0.5rem;">
+        <h2>Notice</h2>
+      </div>
+      <div style="overflow-y: auto; height: calc(100% - 60px); padding: 1rem;">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+    </div>
+  </div>
 </div>

@@ -4,7 +4,7 @@
 
         <h2>Employees</h2>
 
-        <button pButton label="Add Employee"></button>
+        <button pButton label="Add Employee" class="p-button-success p-2" style="font-weight: 600; font-size: 1.2rem; border-radius: 5px;"></button>
 
     </div>
 
@@ -29,7 +29,7 @@
             <tr>
 
                 <td>
-                    <img [src]="employee.image" width="40" height="40" style="border-radius:50%">
+                    <img [src]="employee.image" width="40" height="40" class="mt-1" style="border-radius:50%" >
                 </td>
 
                 <td>{{employee.name}}</td>
@@ -48,13 +48,13 @@
                     <button
                         pButton
                         icon="pi pi-eye"
-                        severity="info"
+                        style="font-size: 1.2rem;"
+                        class="p-button-info m-2"
                         routerLink="/profile">
                     </button>
 
-                    <button pButton icon="pi pi-pencil" severity="warn"></button>
-
-                    <button pButton icon="pi pi-trash" severity="danger"></button>
+                    <button pButton icon="pi pi-pencil" class="p-button-warning m-2" style="font-size: 1.2rem;"></button>
+                    <button pButton icon="pi pi-trash" class="p-button-danger m-2" style="font-size: 1.2rem;"></button>
 
                 </td>
 
