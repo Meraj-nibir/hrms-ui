@@ -19,7 +19,8 @@ export class Dashboard {
       datasets: [
         {
           label: 'Employees',
-          data: [40, 20, 25, 35]
+          data: [40, 20, 25, 35],
+          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0']
         }
       ]
     }

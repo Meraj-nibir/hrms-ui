@@ -4,9 +4,47 @@
 
     <div class="nav-right">
 
-        <i class="pi pi-bell"></i>
+        <!-- Notification -->
+        <div class="notification-wrapper">
 
-        <img src="https://i.pravatar.cc/40" />
+            <button
+                pButton
+                type="button"
+                icon="pi pi-bell"
+                class="notification-btn"
+                (click)="toggleNotifications()" style="height: 40px; width: 40px; border-radius: 50%; position: relative;">
+
+            </button>
+
+            <span class="badge">
+                {{notifications.length}}
+            </span>
+
+            <!-- Dropdown -->
+            @if(showNotifications){
+
+              <div class="notification-dropdown">
+
+                  <h4>Notifications</h4>
+
+                  <div
+                      class="notification-item"
+                      *ngFor="let item of notifications">
+
+                      <p>{{item.message}}</p>
+
+                      <small>{{item.time}}</small>
+
+                  </div>
+
+              </div>
+
+            }
+
+        </div>
+
+        <!-- Profile -->
+        <img src="https://i.pravatar.cc/40">
 
     </div>
 

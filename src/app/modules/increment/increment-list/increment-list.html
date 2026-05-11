@@ -1,1 +1,216 @@
-<p>increment-list works!</p>
+<!-- Top Summary Cards -->
+<div class="grid mb-4">
+
+    <div class="col-12 md:col-4">
+
+        <div class="summary-card">
+
+            <div>
+                <p>Total Increments</p>
+                <h2>24</h2>
+            </div>
+
+            <i class="pi pi-chart-line"></i>
+
+        </div>
+
+    </div>
+
+    <div class="col-12 md:col-4">
+
+        <div class="summary-card">
+
+            <div>
+                <p>Approved</p>
+                <h2>20</h2>
+            </div>
+
+            <i class="pi pi-check-circle"></i>
+
+        </div>
+
+    </div>
+
+    <div class="col-12 md:col-4">
+
+        <div class="summary-card">
+
+            <div>
+                <p>Pending</p>
+                <h2>4</h2>
+            </div>
+
+            <i class="pi pi-clock"></i>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Main Table Card -->
+<div class="main-card">
+
+    <!-- Header -->
+    <div class="table-header">
+
+        <div>
+
+            <h2>Increment Management</h2>
+
+            <p>Manage employee salary increments</p>
+
+        </div>
+
+        <button
+            pButton
+            label="Add Increment"
+            icon="pi pi-plus"
+            class="add-btn"
+            (click)="showDialog = true">
+
+        </button>
+
+    </div>
+
+    <!-- Search -->
+    <div class="search-box">
+
+        <i class="pi pi-search"></i>
+
+        <input
+          type="text"
+          pInputText
+          placeholder="Search employee"
+          [(ngModel)]="searchText"
+          (input)="filterEmployees()">
+
+    </div>
+
+    <!-- Table -->
+    <p-table
+        [value]="filteredIncrements"
+        [tableStyle]="{'min-width':'60rem'}"
+        class="modern-table">
+
+        <ng-template pTemplate="header">
+
+            <tr>
+                <th>Employee</th>
+                <th>Current Salary</th>
+                <th>Increment %</th>
+                <th>New Salary</th>
+                <th>Effective Date</th>
+                <th>Status</th>
+            </tr>
+
+        </ng-template>
+
+        <ng-template pTemplate="body" let-item>
+
+            <tr>
+
+                <td>
+
+                    <div class="employee-info">
+
+                        <img src="https://i.pravatar.cc/40">
+
+                        <span>{{item.employee}}</span>
+
+                    </div>
+
+                </td>
+
+                <td>${{item.currentSalary}}</td>
+
+                <td>
+
+                    <span class="increment-badge">
+                        +{{item.increment}}%
+                    </span>
+
+                </td>
+
+                <td class="new-salary">
+                    ${{item.newSalary}}
+                </td>
+
+                <td>{{item.date}}</td>
+
+                <td>
+
+                    <span class="status approved">
+                        Approved
+                    </span>
+
+                </td>
+
+            </tr>
+
+        </ng-template>
+
+    </p-table>
+
+</div>
+
+<!-- Dialog -->
+<p-dialog
+    header="Add Increment"
+    [(visible)]="showDialog"
+    [modal]="true"
+    [closable]="true"
+    [draggable]="false"
+    [resizable]="false"
+    [style]="{width:'420px'}"
+    styleClass="custom-dialog">
+
+    <div class="dialog-content">
+
+        <div class="field">
+
+            <label>Employee Name</label>
+
+            <input
+                pInputText
+                [(ngModel)]="newIncrement.employee"
+                placeholder="Enter employee name">
+
+        </div>
+
+        <div class="field">
+
+            <label>Current Salary</label>
+
+            <input
+                pInputText
+                type="number"
+                [(ngModel)]="newIncrement.currentSalary"
+                placeholder="Enter salary">
+
+        </div>
+
+        <div class="field">
+
+            <label>Increment Percentage</label>
+
+            <input
+                pInputText
+                type="number"
+                [(ngModel)]="newIncrement.increment"
+                placeholder="Enter increment %">
+
+        </div>
+
+        <button
+            pButton
+            label="Save Increment"
+            icon="pi pi-check"
+            class="save-btn"
+            (click)="addIncrement()">
+
+        </button>
+
+    </div>
+
+</p-dialog>
