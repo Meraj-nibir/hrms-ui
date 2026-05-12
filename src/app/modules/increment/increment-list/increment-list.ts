@@ -86,14 +86,7 @@ export class IncrementList {
     });
 
     this.showDialog = false;
-
-    this.newIncrement = {
-
-      employee:'',
-      currentSalary:0,
-      increment:0
-
-    };
+    this.resetForm();
     this.filteredIncrements = this.increments;
   }
 
@@ -106,6 +99,17 @@ export class IncrementList {
         .includes(this.searchText.toLowerCase())
 
     );
+
+  }
+  resetForm(){
+
+    this.newIncrement = {
+
+      employee:'',
+      currentSalary:0,
+      increment:0
+
+    };
 
   }
 

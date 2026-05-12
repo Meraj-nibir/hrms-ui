@@ -1,13 +1,19 @@
-<!-- Top Summary Cards -->
+<!-- ===================== -->
+<!-- SUMMARY SECTION -->
+<!-- ===================== -->
+
 <div class="grid mb-4">
 
+    <!-- Total Increment -->
     <div class="col-12 md:col-4">
 
         <div class="summary-card">
 
             <div>
+
                 <p>Total Increments</p>
                 <h2>24</h2>
+
             </div>
 
             <i class="pi pi-chart-line"></i>
@@ -16,13 +22,16 @@
 
     </div>
 
+    <!-- Approved -->
     <div class="col-12 md:col-4">
 
         <div class="summary-card">
 
             <div>
-                <p>Approved</p>
+
+                <p>Approved Requests</p>
                 <h2>20</h2>
+
             </div>
 
             <i class="pi pi-check-circle"></i>
@@ -31,13 +40,16 @@
 
     </div>
 
+    <!-- Pending -->
     <div class="col-12 md:col-4">
 
         <div class="summary-card">
 
             <div>
-                <p>Pending</p>
+
+                <p>Pending Requests</p>
                 <h2>4</h2>
+
             </div>
 
             <i class="pi pi-clock"></i>
@@ -48,7 +60,10 @@
 
 </div>
 
-<!-- Main Table Card -->
+<!-- ===================== -->
+<!-- MAIN CONTENT -->
+<!-- ===================== -->
+
 <div class="main-card">
 
     <!-- Header -->
@@ -58,12 +73,15 @@
 
             <h2>Increment Management</h2>
 
-            <p>Manage employee salary increments</p>
+            <p>
+                Manage employee salary increment requests and approvals
+            </p>
 
         </div>
 
         <button
             pButton
+            type="button"
             label="Add Increment"
             icon="pi pi-plus"
             class="add-btn"
@@ -79,70 +97,125 @@
         <i class="pi pi-search"></i>
 
         <input
-          type="text"
-          pInputText
-          placeholder="Search employee"
-          [(ngModel)]="searchText"
-          (input)="filterEmployees()">
+            pInputText
+            type="text"
+            placeholder="Search employee..."
+            [(ngModel)]="searchText"
+            (input)="filterEmployees()">
 
     </div>
 
     <!-- Table -->
     <p-table
         [value]="filteredIncrements"
-        [tableStyle]="{'min-width':'60rem'}"
-        class="modern-table">
+        responsiveLayout="scroll"
+        styleClass="modern-table">
 
+        <!-- Table Header -->
         <ng-template pTemplate="header">
 
             <tr>
+
                 <th>Employee</th>
                 <th>Current Salary</th>
-                <th>Increment %</th>
+                <th>Increment</th>
                 <th>New Salary</th>
                 <th>Effective Date</th>
                 <th>Status</th>
+
             </tr>
 
         </ng-template>
 
+        <!-- Table Body -->
         <ng-template pTemplate="body" let-item>
 
             <tr>
 
+                <!-- Employee -->
                 <td>
 
                     <div class="employee-info">
 
-                        <img src="https://i.pravatar.cc/40">
+                        <img
+                            src="https://i.pravatar.cc/40"
+                            alt="employee">
 
-                        <span>{{item.employee}}</span>
+                        <div>
+
+                            <span>{{item.employee}}</span>
+
+                        </div>
 
                     </div>
 
                 </td>
 
-                <td>${{item.currentSalary}}</td>
+                <!-- Current Salary -->
+                <td>
 
+                    ${{item.currentSalary}}
+
+                </td>
+
+                <!-- Increment -->
                 <td>
 
                     <span class="increment-badge">
+
                         +{{item.increment}}%
+
                     </span>
 
                 </td>
 
+                <!-- New Salary -->
                 <td class="new-salary">
+
                     ${{item.newSalary}}
+
                 </td>
 
-                <td>{{item.date}}</td>
+                <!-- Date -->
+                <td>
 
+                    {{item.date}}
+
+                </td>
+
+                <!-- Status -->
                 <td>
 
                     <span class="status approved">
+
                         Approved
+
                     </span>
+
+                </td>
+
+            </tr>
+
+        </ng-template>
+
+        <!-- Empty Message -->
+        <ng-template pTemplate="emptymessage">
+
+            <tr>
+
+                <td colspan="6">
+
+                    <div class="empty-state">
+
+                        <i class="pi pi-inbox"></i>
+
+                        <h3>No Increment Found</h3>
+
+                        <p>
+                            No employee matched your search.
+                        </p>
+
+                    </div>
 
                 </td>
 
@@ -154,30 +227,37 @@
 
 </div>
 
-<!-- Dialog -->
+<!-- ===================== -->
+<!-- ADD INCREMENT DIALOG -->
+<!-- ===================== -->
+
 <p-dialog
-    header="Add Increment"
+    header="Add Salary Increment"
     [(visible)]="showDialog"
     [modal]="true"
-    [closable]="true"
     [draggable]="false"
     [resizable]="false"
-    [style]="{width:'420px'}"
-    styleClass="custom-dialog">
+    [closable]="true"
+    [style]="{ width: '450px' }"
+    styleClass="custom-dialog"
+    (onHide)="resetForm()">
 
     <div class="dialog-content">
 
+        <!-- Employee -->
         <div class="field">
 
             <label>Employee Name</label>
 
             <input
                 pInputText
-                [(ngModel)]="newIncrement.employee"
-                placeholder="Enter employee name">
+                type="text"
+                placeholder="Enter employee name"
+                [(ngModel)]="newIncrement.employee">
 
         </div>
 
+        <!-- Current Salary -->
         <div class="field">
 
             <label>Current Salary</label>
@@ -185,11 +265,12 @@
             <input
                 pInputText
                 type="number"
-                [(ngModel)]="newIncrement.currentSalary"
-                placeholder="Enter salary">
+                placeholder="Enter current salary"
+                [(ngModel)]="newIncrement.currentSalary">
 
         </div>
 
+        <!-- Increment -->
         <div class="field">
 
             <label>Increment Percentage</label>
@@ -197,13 +278,15 @@
             <input
                 pInputText
                 type="number"
-                [(ngModel)]="newIncrement.increment"
-                placeholder="Enter increment %">
+                placeholder="Enter increment percentage"
+                [(ngModel)]="newIncrement.increment">
 
         </div>
 
+        <!-- Save Button -->
         <button
             pButton
+            type="button"
             label="Save Increment"
             icon="pi pi-check"
             class="save-btn"

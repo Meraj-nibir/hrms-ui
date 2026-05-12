@@ -1,6 +1,104 @@
-.card{
-    background:white;
+:host{
+    display:block;
+}
+
+/* Dashboard Background */
+.dashboard-container{
     padding:20px;
+}
+
+/* Card */
+.card{
+    background:#ffffff;
+    border-radius:16px;
+    padding:24px;
+    box-shadow:0 4px 20px rgba(0,0,0,0.06);
+    border:1px solid #e2e8f0;
+}
+
+/* Top Summary Cards */
+.summary-card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    min-height:120px;
+}
+
+.summary-content h4{
+    margin:0;
+    font-size:16px;
+    color:#64748b;
+    font-weight:500;
+}
+
+.summary-content h1{
+    margin-top:12px;
+    font-size:36px;
+    color:#0f172a;
+    font-weight:700;
+}
+
+.summary-icon{
+    width:60px;
+    height:60px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#eff6ff;
+}
+
+.summary-icon i{
+    font-size:28px;
+    color:#2563eb;
+}
+
+/* Section Titles */
+.section-title{
+    margin-bottom:20px;
+    color:#0f172a;
+    font-size:22px;
+    font-weight:700;
+}
+
+/* Notice Area */
+.notice-container{
+    height:360px;
+    overflow-y:auto;
+    padding-right:10px;
+}
+
+.notice-item{
+    padding:16px;
     border-radius:12px;
-    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+    background:#f8fafc;
+    margin-bottom:14px;
+    border-left:4px solid #2563eb;
+}
+
+.notice-item h4{
+    margin:0 0 8px 0;
+    color:#0f172a;
+    font-size:16px;
+}
+
+.notice-item p{
+    margin:0;
+    color:#475569;
+    line-height:1.6;
+    font-size:14px;
+}
+
+/* Chart Fix */
+::ng-deep canvas{
+    max-height:300px !important;
+}
+
+/* Responsive */
+@media screen and (max-width:768px){
+
+    .summary-content h1{
+        font-size:28px;
+    }
+
 }
