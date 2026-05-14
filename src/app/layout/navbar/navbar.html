@@ -1,51 +1,50 @@
 <div class="navbar">
 
-    <h3>Human Resource Management System</h3>
+  <h3>Human Resource Management System</h3>
 
-    <div class="nav-right">
+  <div class="nav-right">
 
-        <!-- Notification -->
-        <div class="notification-wrapper">
+    <!-- Notification -->
+    <div class="notification-wrapper" #notificationWrapper>
+      <button
+        pButton
+        type="button"
+        icon="pi pi-bell"
+        class="notification-btn"
+        (click)="toggleNotifications()" style="height: 40px; width: 40px; border-radius: 50%; background:whitesmoke; position: relative;">
 
-            <button
-                pButton
-                type="button"
-                icon="pi pi-bell"
-                class="notification-btn"
-                (click)="toggleNotifications()" style="height: 40px; width: 40px; border-radius: 50%; background:whitesmoke; position: relative;">
+      </button>
 
-            </button>
+      <span class="badge">
+          {{notifications.length}}
+      </span>
 
-            <span class="badge">
-                {{notifications.length}}
-            </span>
+      <!-- Dropdown -->
+      @if(showNotifications){
 
-            <!-- Dropdown -->
-            @if(showNotifications){
+        <div class="notification-dropdown">
 
-              <div class="notification-dropdown">
+          <h4>Notifications</h4>
 
-                  <h4>Notifications</h4>
+          <div
+            class="notification-item"
+            *ngFor="let item of notifications">
 
-                  <div
-                      class="notification-item"
-                      *ngFor="let item of notifications">
+            <p>{{item.message}}</p>
 
-                      <p>{{item.message}}</p>
+            <small>{{item.time}}</small>
 
-                      <small>{{item.time}}</small>
-
-                  </div>
-
-              </div>
-
-            }
+          </div>
 
         </div>
 
-        <!-- Profile -->
-        <img src="https://i.pravatar.cc/40">
+      }
 
     </div>
+
+    <!-- Profile -->
+    <img src="https://i.pravatar.cc/40">
+
+  </div>
 
 </div>

@@ -1,18 +1,55 @@
+<p-toast></p-toast>
+
 <div class="card">
 
+    <!-- Header -->
     <div class="table-header">
 
-        <h2>Employees</h2>
+        <div>
 
-        <button pButton label="Add Employee" class="p-button-success p-2" style="font-weight: 600; font-size: 1.2rem; border-radius: 5px;"></button>
+            <h2>Employees</h2>
+
+            <p>
+                Manage all employees information
+            </p>
+
+        </div>
+
+        <button
+            pButton
+            [label]="isEditMode ? 'Edit Employee' : 'Add Employee'"
+            icon="pi pi-plus"
+            class="add-btn"
+            (click)="showDialog = true">
+
+        </button>
 
     </div>
 
-    <p-table [value]="employees" [tableStyle]="{'min-width':'60rem'}">
+    <!-- Search -->
+    <div class="search-box">
 
+        <i class="pi pi-search"></i>
+
+        <input
+            pInputText
+            type="text"
+            placeholder="Search employee..."
+            [(ngModel)]="searchText"
+            (input)="filterEmployees()">
+
+    </div>
+
+    <!-- Table -->
+    <p-table
+        [value]="filteredEmployees"
+        responsiveLayout="scroll">
+
+        <!-- Header -->
         <ng-template pTemplate="header">
 
             <tr>
+
                 <th>Photo</th>
                 <th>Name</th>
                 <th>Department</th>
@@ -20,41 +57,79 @@
                 <th>Salary</th>
                 <th>Status</th>
                 <th>Actions</th>
+
             </tr>
 
         </ng-template>
 
+        <!-- Body -->
         <ng-template pTemplate="body" let-employee>
 
             <tr>
 
+                <!-- Image -->
                 <td>
-                    <img [src]="employee.image" width="40" height="40" class="mt-1" style="border-radius:50%" >
+
+                    <img
+                        [src]="employee.image"
+                        width="42"
+                        height="42"
+                        style="border-radius:50%">
+
                 </td>
 
+                <!-- Name -->
                 <td>{{employee.name}}</td>
-                <td>{{employee.department}}</td>
-                <td>{{employee.position}}</td>
-                <td>{{employee.salary}}</td>
 
+                <!-- Department -->
+                <td>{{employee.department}}</td>
+
+                <!-- Position -->
+                <td>{{employee.position}}</td>
+
+                <!-- Salary -->
+                <td>${{employee.salary}}</td>
+
+                <!-- Status -->
                 <td>
+
                     <span class="status active">
+
                         {{employee.status}}
+
                     </span>
+
                 </td>
 
+                <!-- Actions -->
                 <td>
 
+                    <!-- View -->
                     <button
                         pButton
                         icon="pi pi-eye"
-                        style="font-size: 1.2rem;"
-                        class="p-button-info m-2"
+                        class="p-button-info mr-2"
                         routerLink="/profile">
+
                     </button>
 
-                    <button pButton icon="pi pi-pencil" class="p-button-warning m-2" style="font-size: 1.2rem;"></button>
-                    <button pButton icon="pi pi-trash" class="p-button-danger m-2" style="font-size: 1.2rem;"></button>
+                    <!-- Edit -->
+                    <button
+                        pButton
+                        icon="pi pi-pencil"
+                        class="p-button-warning mr-2"
+                        (click)="editEmployee(employee)">
+
+                    </button>
+
+                    <!-- Delete -->
+                    <button
+                        pButton
+                        icon="pi pi-trash"
+                        class="p-button-danger"
+                        (click)="deleteEmployee(employee)">
+
+                    </button>
 
                 </td>
 
@@ -65,3 +140,87 @@
     </p-table>
 
 </div>
+
+<!-- ===================== -->
+<!-- DIALOG -->
+<!-- ===================== -->
+
+<p-dialog
+    [header]="isEditMode ? 'Edit Employee' : 'Add Employee'"
+    [(visible)]="showDialog"
+    [modal]="true"
+    [dismissableMask]="true"
+    [draggable]="false"
+    [resizable]="false"
+    [closable]="true"
+    [style]="{width:'450px'}"
+    styleClass="custom-dialog"
+    (onHide)="resetForm()">
+
+    <div class="dialog-content">
+
+        <!-- Name -->
+        <div class="field">
+
+            <label>Employee Name</label>
+
+            <input
+                pInputText
+                type="text"
+                placeholder="Enter employee name"
+                [(ngModel)]="newEmployee.name">
+
+        </div>
+
+        <!-- Department -->
+        <div class="field">
+
+            <label>Department</label>
+
+            <input
+                pInputText
+                type="text"
+                placeholder="Enter department"
+                [(ngModel)]="newEmployee.department">
+
+        </div>
+
+        <!-- Position -->
+        <div class="field">
+
+            <label>Position</label>
+
+            <input
+                pInputText
+                type="text"
+                placeholder="Enter position"
+                [(ngModel)]="newEmployee.position">
+
+        </div>
+
+        <!-- Salary -->
+        <div class="field">
+
+            <label>Salary</label>
+
+            <input
+                pInputText
+                type="number"
+                placeholder="Enter salary"
+                [(ngModel)]="newEmployee.salary">
+
+        </div>
+
+        <!-- Save Button -->
+        <button
+            pButton
+            [label]="isEditMode ? 'Update Employee' : 'Save Employee'"
+            icon="pi pi-check"
+            class="save-btn"
+            (click)="addEmployee()">
+
+        </button>
+
+    </div>
+
+</p-dialog>

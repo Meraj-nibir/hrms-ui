@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ButtonModule } from 'primeng/button';
@@ -16,6 +16,20 @@ import { ButtonModule } from 'primeng/button';
 export class Navbar {
 
   showNotifications = false;
+
+  constructor(private elementRef: ElementRef<HTMLElement>) {}
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    if (!this.showNotifications) {
+      return;
+    }
+
+    const clickedInside = this.elementRef.nativeElement.contains(event.target as Node);
+    if (!clickedInside) {
+      this.showNotifications = false;
+    }
+  }
 
   notifications = [
 

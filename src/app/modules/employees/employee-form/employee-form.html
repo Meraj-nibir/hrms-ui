@@ -1,1 +1,60 @@
-<p>employee-form works!</p>
+<div class="dialog-content">
+
+    <div class="field">
+
+        <label>Employee Name</label>
+
+        <input
+            pInputText
+            type="text"
+            placeholder="Enter employee name"
+            [(ngModel)]="employee.name">
+
+    </div>
+
+    <div class="field">
+
+        <label>Department</label>
+
+        <input
+            pInputText
+            type="text"
+            placeholder="Enter department"
+            [(ngModel)]="employee.department">
+
+    </div>
+
+    <div class="field">
+
+        <label>Position</label>
+
+        <input
+            pInputText
+            type="text"
+            placeholder="Enter position"
+            [(ngModel)]="employee.position">
+
+    </div>
+
+    <div class="field">
+
+        <label>Salary</label>
+
+        <input
+            pInputText
+            type="number"
+            placeholder="Enter salary"
+            [(ngModel)]="employee.salary">
+
+    </div>
+
+    <button
+        pButton
+        label="Save Employee"
+        icon="pi pi-check"
+        class="save-btn"
+        (click)="saveEmployee()">
+
+    </button>
+
+</div>
